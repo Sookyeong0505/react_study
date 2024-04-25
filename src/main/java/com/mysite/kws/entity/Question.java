@@ -1,4 +1,4 @@
-package com.mysite.kws.model;
+package com.mysite.kws.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Table(name = "question")
 @Entity
 public class Question {
     @Id

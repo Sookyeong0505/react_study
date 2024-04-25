@@ -1,6 +1,6 @@
 package com.mysite.kws;
 
-import com.mysite.kws.model.Question;
+import com.mysite.kws.entity.Question;
 import com.mysite.kws.repository.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

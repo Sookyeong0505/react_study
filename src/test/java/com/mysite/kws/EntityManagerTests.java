@@ -1,10 +1,8 @@
 package com.mysite.kws;
 
-import com.mysite.kws.model.Question;
+import com.mysite.kws.entity.Question;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class EntityManagerTests {
     @PersistenceContext

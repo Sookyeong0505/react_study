@@ -1,4 +1,4 @@
-package com.mysite.kws.model;
+package com.mysite.kws.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Table(name = "answer")
 @Entity
 public class Answer {
     @Id

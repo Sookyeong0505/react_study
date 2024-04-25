@@ -1,18 +1,17 @@
 spring:
   application:
     name: kws
-
 # DBMS
   datasource:
-    url: jdbc:mariadb://localhost:3306
-    username: user1
-    password: 1114
     driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/kws
+    username: root
+    password: 1114
 # JPA
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
         hibernate:
-        ddl-auto: update
-        show-sql: true
-        properties:
-            hibernate:
-                dialect: org.hibernate.dialect.MariaDBDialect
+          show_sql: true
+          format_sql: true
