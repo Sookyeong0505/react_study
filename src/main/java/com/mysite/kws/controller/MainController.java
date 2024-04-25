@@ -9,7 +9,6 @@ public class MainController {
 
     @GetMapping("/")
     public String main() {
-        System.out.println("main controller");
-        return "index";
+        return "redirect:/question/list";
     }
 }
