@@ -12,10 +12,4 @@ public class MainController {
         System.out.println("main controller");
         return "index";
     }
-
-    @GetMapping("/kws")
-    public String kws() {
-        System.out.println("kws controller");
-        return "안녕하세요. kws에 오신 것을 환영합니다.";
-    }
 }
