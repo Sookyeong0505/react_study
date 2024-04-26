@@ -7,16 +7,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
+@RequestMapping("/question")
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
 
     private final QuestionService questionService;
 
-    @GetMapping("/question/list")
+    @GetMapping("/list")
     public String list(Model model) {
         // DB에서 질문 목록을 조회
         List<Question> questions = questionService.getList();
@@ -26,10 +30,12 @@ public class QuestionController {
         return "question_list";
     }
 
-//    @GetMapping("/question/detail")
-//    public String detail(Model model) {
-//        // DB에서 질문 상세정보를 조회
-//
-//        return "question_detail";
-//    }
+    @GetMapping("/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id) {
+        // DB에서 질문 상세정보를 조회
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question", question);
+        return "question_detail";
+    }
+
 }
