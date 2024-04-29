@@ -1,15 +1,16 @@
 package com.mysite.kws.controller;
 
 import com.mysite.kws.entity.Question;
-import com.mysite.kws.repository.QuestionRepository;
+import com.mysite.kws.entity.QuestionForm;
 import com.mysite.kws.service.QuestionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("/question")
 @RequiredArgsConstructor
@@ -37,14 +38,22 @@ public class QuestionController {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(QuestionForm questionForm) {
+        // GET 방식으로 URL이 요청되더라도 th:object에 의해 QuestionForm 객체가 필요함.
+        // 매개변수로 바인딩한 객체는 Model 객체로 전달하지 않아도 템플릿에서 사용 가능.
+
         return "question_form";
     }
 
     @PostMapping("/create")
-    public String create(@RequestParam("title") String title,
-                         @RequestParam("content") String content) {
-        // TODO: 질문 등록 처리
+    public String create(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        // BindingResult 매개변수는 항상 @Valid 매개변수 바로 뒤에 위치해야 한다
+
+        // 유효성 검사 실패 시 다시 입력 폼으로 이동
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getTitle(), questionForm.getContent());
         return "redirect:/question/list";
     }
 

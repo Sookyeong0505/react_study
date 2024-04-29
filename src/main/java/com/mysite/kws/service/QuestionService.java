@@ -38,7 +38,7 @@ public class QuestionService {
 
     public void create(String title, String content) {
         Question q = new Question();
-        q.setTitle(q.getTitle());
+        q.setTitle(title);
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q);
